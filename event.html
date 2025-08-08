@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detail Event - Lampung Agenda</title>
+    <meta name="description" content="Detail event di Provinsi Lampung">
+    <link rel="canonical" href="https://lampungagenda.web.id">
+    <link rel="icon" href="https://iili.io/F6BiQWu.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #001f63;
+            --primary-light: #2a4a8a;
+            --accent: #fbd109;
+            --accent-light: #ffdf5a;
+            --white: #ffffff;
+            --off-white: #f8f9fa;
+            --gray-light: #f5f5f5;
+            --gray-medium: #e0e0e0;
+            --gray-dark: #333333;
+            --text-dark: #1a1a1a;
+            --text-light: #6c757d;
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+            --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.12);
+            --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.16);
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            --border-radius: 8px;
+            --border-radius-lg: 12px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--white);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3, h4 {
+            font-weight: 700;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--white);
+            color: var(--primary);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow-sm);
+            border-bottom: 1px solid rgba(0, 31, 99, 0.1);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo img {
+            height: 36px;
+            width: auto;
+        }
+
+        .logo h1 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: linear-gradient(to right, var(--primary), var(--primary-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav ul li a {
+            font-weight: 600;
+            font-size: 1rem;
+            position: relative;
+            padding: 8px 0;
+        }
+
+        nav ul li a:hover {
+            color: var(--accent);
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        /* Event Detail Section */
+        .event-detail-section {
+            padding: 60px 0;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--primary);
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+
+        .back-link:hover {
+            color: var(--primary-light);
+        }
+
+        .event-detail-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+        }
+
+        .event-image-container {
+            position: relative;
+            border-radius: var(--border-radius-lg);
+            overflow: hidden;
+            height: 400px;
+            box-shadow: var(--shadow-md);
+        }
+
+        .event-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .event-image:hover {
+            transform: scale(1.02);
+        }
+
+        .event-category {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: var(--accent);
+            color: var(--primary);
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            z-index: 2;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .event-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+
+        .event-header h1 {
+            font-size: 2.2rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+            line-height: 1.3;
+        }
+
+        .event-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 25px;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .meta-item i {
+            color: var(--accent);
+            font-size: 1.2rem;
+        }
+
+        .meta-content h4 {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .meta-content p {
+            font-size: 1.1rem;
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+
+        .event-description {
+            margin-bottom: 30px;
+            line-height: 1.8;
+            white-space: pre-line;
+        }
+
+        .event-description h3 {
+            font-size: 1.3rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+            position: relative;
+            padding-bottom: 8px;
+        }
+
+        .event-description h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background-color: var(--accent);
+            border-radius: 2px;
+        }
+
+        .event-social {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 30px;
+            align-items: center;
+        }
+
+        .event-social h3 {
+            font-size: 1.1rem;
+            color: var(--primary);
+            margin-right: 10px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background-color: var(--gray-light);
+            border-radius: 50%;
+            transition: var(--transition);
+            color: var(--primary);
+            font-size: 1.2rem;
+        }
+
+        .social-links a:hover {
+            background-color: var(--primary);
+            color: var(--white);
+            transform: translateY(-3px);
+        }
+
+        .share-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 12px 25px;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        .share-btn:hover {
+            background-color: var(--primary-light);
+            transform: translateY(-3px);
+        }
+
+        /* Image Modal */
+        .image-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            z-index: 1001;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .image-modal.show {
+            display: flex;
+            opacity: 1;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .image-modal-content {
+            max-width: 90%;
+            max-height: 90%;
+            position: relative;
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+
+        .image-modal.show .image-modal-content {
+            transform: scale(1);
+        }
+
+        .image-modal-content img {
+            max-width: 100%;
+            max-height: 90vh;
+            object-fit: contain;
+            border-radius: var(--border-radius);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .close-image-modal {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            color: var(--white);
+            font-size: 2.5rem;
+            cursor: pointer;
+            transition: var(--transition);
+            background-color: rgba(0, 0, 0, 0.5);
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        .close-image-modal:hover {
+            color: var(--accent);
+            transform: rotate(90deg);
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .event-image-container {
+                height: 300px;
+            }
+            
+            .event-header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .event-meta {
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .event-image-container {
+                height: 250px;
+            }
+            
+            .event-header h1 {
+                font-size: 1.6rem;
+            }
+            
+            .event-meta {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+                <img src="https://iili.io/F6BiQWu.png" alt="Lampung Agenda Logo">
+            </a>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+            <nav id="mainNav">
+                <ul>
+                    <li><a href="index.html">Beranda</a></li>
+                    <li><a href="index.html#events">Event</a></li>
+                    <li><a href="index.html#calendar-section">Kalender</a></li>
+                    <li><a href="index.html#footer">Kontak</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Event Detail Section -->
+    <section class="event-detail-section">
+        <div class="container">
+            <a href="index.html#events" class="back-link">
+                <i class="fas fa-arrow-left"></i> Kembali ke Daftar Event
+            </a>
+            
+            <div class="event-detail-container">
+                <div class="event-image-container">
+                    <img id="eventDetailImage" src="" alt="Event Image" class="event-image">
+                    <span class="event-category" id="eventCategory"></span>
+                </div>
+                
+                <div class="event-content">
+                    <div class="event-header">
+                        <h1 id="eventTitle">Memuat judul event...</h1>
+                        <div class="event-meta">
+                            <div class="meta-item">
+                                <i class="far fa-calendar-alt"></i>
+                                <div class="meta-content">
+                                    <h4>Tanggal</h4>
+                                    <p id="eventDate">-</p>
+                                </div>
+                            </div>
+                            <div class="meta-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <div class="meta-content">
+                                    <h4>Lokasi</h4>
+                                    <p id="eventLocation">-</p>
+                                </div>
+                            </div>
+                            <div class="meta-item">
+                                <i class="fas fa-user-tie"></i>
+                                <div class="meta-content">
+                                    <h4>Penyelenggara</h4>
+                                    <p id="eventOrganizer">-</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="event-description">
+                        <h3>Deskripsi Event</h3>
+                        <p id="eventDescription">Memuat deskripsi event...</p>
+                    </div>
+                    
+                    <div class="event-social">
+                        <h3>Media Sosial:</h3>
+                        <div class="social-links" id="socialLinks">
+                            <!-- Social links will be added here -->
+                        </div>
+                    </div>
+                    
+                    <button class="share-btn" id="shareBtn">
+                        <i class="fas fa-share-alt"></i> Bagikan Event
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Image Modal -->
+    <div class="image-modal" id="imageModal">
+        <span class="close-image-modal" id="closeImageModal">&times;</span>
+        <div class="image-modal-content">
+            <img id="expandedImage" src="" alt="Expanded Image">
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile Menu Toggle
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const mainNav = document.getElementById('mainNav');
+            
+            mobileMenuBtn.addEventListener('click', function() {
+                this.innerHTML = mainNav.classList.contains('active') ? '☰' : '✕';
+                mainNav.classList.toggle('active');
+                document.body.style.overflow = mainNav.classList.contains('active') ? 'hidden' : 'auto';
+            });
+            
+            // Get event ID from URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const eventId = urlParams.get('id');
+            
+            if (!eventId) {
+                window.location.href = 'index.html';
+                return;
+            }
+            
+            // Fetch event data
+            fetchEventData(eventId);
+            
+            // Share button functionality
+            const shareBtn = document.getElementById('shareBtn');
+            shareBtn.addEventListener('click', shareEvent);
+            
+            // Image modal functionality
+            const eventImage = document.getElementById('eventDetailImage');
+            const imageModal = document.getElementById('imageModal');
+            const closeImageModal = document.getElementById('closeImageModal');
+            const expandedImage = document.getElementById('expandedImage');
+            
+            eventImage.addEventListener('click', function() {
+                expandedImage.src = this.src;
+                imageModal.classList.add('show');
+                document.body.style.overflow = 'hidden';
+            });
+            
+            closeImageModal.addEventListener('click', function() {
+                imageModal.classList.remove('show');
+                document.body.style.overflow = 'auto';
+            });
+            
+            window.addEventListener('click', function(event) {
+                if (event.target === imageModal) {
+                    imageModal.classList.remove('show');
+                    document.body.style.overflow = 'auto';
+                }
+            });
+        });
+        
+        async function fetchEventData(eventId) {
+            try {
+                // Fetch all events from Google Sheet
+                const response = await fetch('https://opensheet.elk.sh/1HTf8RkL4k0ZBFMth-Gh9EOH2NSuyiw7_KVQa0XVKja8/Form%20Responses%201');
+                const data = await response.json();
+                
+                // Find the event with matching ID
+                const eventData = data.find(event => event.Timestamp === eventId);
+                
+                if (!eventData) {
+                    window.location.href = 'index.html';
+                    return;
+                }
+                
+                // Display event data
+                displayEvent(eventData);
+            } catch (error) {
+                console.error('Error fetching event data:', error);
+                window.location.href = 'index.html';
+            }
+        }
+        
+        function displayEvent(event) {
+            document.title = `${event['Nama Event']} | Lampung Agenda`;
+            
+            // Set event image
+            const eventImage = document.getElementById('eventDetailImage');
+            eventImage.src = event['Gambar (Url)'] || 'https://images.unsplash.com/photo-1505373877841-8d25f7d46678?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1512&q=80';
+            eventImage.alt = event['Nama Event'];
+            
+            // Set other event details
+            document.getElementById('eventTitle').textContent = event['Nama Event'] || 'Event Tanpa Judul';
+            document.getElementById('eventCategory').textContent = event['Kategori'] || 'Umum';
+            
+            // Format dates
+            let dateText = formatDate(event['Tanggal Mulai']);
+            if (event['Tanggal Selesai'] && event['Tanggal Selesai'] !== event['Tanggal Mulai']) {
+                dateText += ' - ' + formatDate(event['Tanggal Selesai']);
+            }
+            document.getElementById('eventDate').textContent = dateText;
+            
+            document.getElementById('eventLocation').textContent = event['Lokasi'] || 'Lokasi tidak tersedia';
+            document.getElementById('eventOrganizer').textContent = event['Penyelenggara'] || 'Tidak diketahui';
+            document.getElementById('eventDescription').textContent = event['Deskripsi'] || 'Tidak ada deskripsi';
+            
+            // Add social links
+            const socialLinksContainer = document.getElementById('socialLinks');
+            socialLinksContainer.innerHTML = '';
+            
+            if (event['Instagram']) {
+                socialLinksContainer.innerHTML += `<a href="${event['Instagram']}" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>`;
+            }
+            if (event['Facebook']) {
+                socialLinksContainer.innerHTML += `<a href="${event['Facebook']}" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>`;
+            }
+            if (event['X / Twitter']) {
+                socialLinksContainer.innerHTML += `<a href="${event['X / Twitter']}" target="_blank" title="Twitter/X"><i class="fab fa-twitter"></i></a>`;
+            }
+            if (event['Youtube']) {
+                socialLinksContainer.innerHTML += `<a href="${event['Youtube']}" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>`;
+            }
+            if (event['Tiktok']) {
+                socialLinksContainer.innerHTML += `<a href="${event['Tiktok']}" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>`;
+            }
+            
+            if (socialLinksContainer.innerHTML === '') {
+                socialLinksContainer.innerHTML = '<p>Tidak ada media sosial</p>';
+            }
+        }
+        
+        function formatDate(dateString) {
+            if (!dateString) return 'Tanggal tidak tersedia';
+            
+            const options = { 
+                weekday: 'long', 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric' 
+            };
+            
+            try {
+                // Handle MM/DD/YYYY format
+                if (dateString.includes('/')) {
+                    const parts = dateString.split('/');
+                    if (parts.length === 3) {
+                        const date = new Date(parts[2], parts[0] - 1, parts[1]);
+                        return date.toLocaleDateString('id-ID', options);
+                    }
+                }
+                
+                // Handle other formats
+                const date = new Date(dateString);
+                return date.toLocaleDateString('id-ID', options);
+            } catch (e) {
+                return dateString;
+            }
+        }
+        
+        function shareEvent() {
+            const eventTitle = document.getElementById('eventTitle').textContent;
+            const currentUrl = window.location.href;
+            
+            if (navigator.share) {
+                navigator.share({
+                    title: eventTitle,
+                    text: `Lihat event "${eventTitle}" di Lampung Agenda`,
+                    url: currentUrl
+                }).catch(err => {
+                    console.log('Error sharing:', err);
+                    fallbackShare(currentUrl);
+                });
+            } else {
+                fallbackShare(currentUrl);
+            }
+        }
+        
+        function fallbackShare(url) {
+            // Copy URL to clipboard
+            navigator.clipboard.writeText(url).then(() => {
+                alert('Link event telah disalin ke clipboard!');
+            }).catch(err => {
+                console.error('Could not copy text: ', err);
+                prompt('Salin link berikut untuk membagikan event:', url);
+            });
+        }
+    </script>
+</body>
+</html>
