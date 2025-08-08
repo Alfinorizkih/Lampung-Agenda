@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Halaman Tidak Ditemukan | Lampung Agenda</title>
+    <meta name="description" content="Halaman yang Anda cari tidak ditemukan. Kembali ke beranda Lampung Agenda.">
+    <meta property="og:title" content="404 - Halaman Tidak Ditemukan | Lampung Agenda">
+    <meta property="og:description" content="Halaman tidak ditemukan. Kembali ke beranda Lampung Agenda.">
+    <meta property="og:image" content="https://iili.io/F6KLNxs.png">
+    <meta property="og:url" content="https://lampungagenda.web.id">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="canonical" href="https://lampungagenda.web.id">
+    <link rel="icon" href="https://iili.io/F6BiQWu.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* PAKAI CSS YANG SAMA PERSIS DARI KODE AWAL (TIDAK ADA YANG DIUBAH) */
+        :root {
+            --primary: #001f63;
+            --primary-light: #2a4a8a;
+            --accent: #fbd109;
+            --accent-light: #ffdf5a;
+            --past-event: #ff6b6b;
+            --white: #ffffff;
+            --off-white: #f8f9fa;
+            --gray-light: #f5f5f5;
+            --gray-medium: #e0e0e0;
+            --gray-dark: #333333;
+            --text-dark: #1a1a1a;
+            --text-light: #6c757d;
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+            --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.12);
+            --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.16);
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            --border-radius: 8px;
+            --border-radius-lg: 12px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--white);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3, h4 {
+            font-weight: 700;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles (SAMA PERSIS) */
+        header {
+            background-color: var(--white);
+            color: var(--primary);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow-sm);
+            border-bottom: 1px solid rgba(0, 31, 99, 0.1);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo img {
+            height: 36px;
+            width: auto;
+        }
+
+        .logo h1 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: linear-gradient(to right, var(--primary), var(--primary-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav ul li a {
+            font-weight: 600;
+            font-size: 1rem;
+            position: relative;
+            padding: 8px 0;
+        }
+
+        nav ul li a:hover {
+            color: var(--accent);
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        /* GANTI BANNER AWAL MENJADI ERROR SECTION */
+        .top-banner {
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: var(--white);
+            padding: 100px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .top-banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPjxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjAzKSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3QgZmlsbD0idXJsKCNwYXR0ZXJuKSIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIvPjwvc3ZnPg==');
+            opacity: 0.5;
+        }
+
+        .top-banner h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+            line-height: 1.3;
+        }
+
+        .top-banner p {
+            font-size: 1.15rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            opacity: 0.9;
+            position: relative;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--accent);
+            color: var(--primary);
+            padding: 14px 32px;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background-color: var(--white);
+            transition: width 0.3s ease;
+            z-index: -1;
+        }
+
+        .btn:hover {
+            color: var(--primary);
+            box-shadow: var(--shadow-md);
+            transform: translateY(-3px);
+        }
+
+        .btn:hover::before {
+            width: 100%;
+        }
+
+        /* HILANGKAN SLIDER DAN EVENT GRID (KARENA INI HALAMAN ERROR) */
+
+        /* FOOTER (SAMA PERSIS DARI KODE AWAL) */
+        .footer-top {
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: var(--white);
+            padding: 80px 0 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer-top::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPjxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjAzKSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3QgZmlsbD0idXJsKCNwYXR0ZXJuKSIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIvPjwvc3ZnPg==');
+            opacity: 0.3;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-column {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .footer-logo {
+            margin-bottom: 20px;
+        }
+
+        .footer-logo img {
+            height: 50px;
+            width: auto;
+        }
+
+        .footer-about {
+            margin-bottom: 25px;
+            font-size: 0.95rem;
+            line-height: 1.7;
+            opacity: 0.9;
+        }
+
+        .footer-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background-color: var(--accent);
+            border-radius: 2px;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .footer-links a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: var(--transition);
+            opacity: 0.9;
+            font-size: 0.95rem;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+            transform: translateX(5px);
+            opacity: 1;
+        }
+
+        .footer-links a i {
+            font-size: 0.8rem;
+            color: var(--accent);
+        }
+
+        .footer-contact {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .contact-item i {
+            color: var(--accent);
+            font-size: 1.1rem;
+            margin-top: 3px;
+        }
+
+        .contact-info {
+            font-size: 0.95rem;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transition: var(--transition);
+            color: var(--white);
+            font-size: 1.1rem;
+        }
+
+        .social-links a:hover {
+            background-color: var(--accent);
+            color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            background-color: rgba(0, 0, 0, 0.1);
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        .copyright {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .copyright a {
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        /* Responsive Styles (SAMA PERSIS) */
+        @media (max-width: 768px) {
+            .header-container {
+                padding: 0 15px;
+            }
+            
+            nav {
+                position: fixed;
+                top: 0;
+                left: -100%;
+                width: 100%;
+                height: 100vh;
+                background-color: var(--white);
+                padding: 80px 30px 30px;
+                transition: all 0.3s ease;
+                z-index: 100;
+                overflow-y: auto;
+            }
+            
+            nav.active {
+                left: 0;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            nav ul li a {
+                font-size: 1.1rem;
+                padding: 10px 0;
+                display: block;
+                border-bottom: 1px solid rgba(0, 31, 99, 0.1);
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .top-banner h2 {
+                font-size: 1.8rem;
+            }
+            
+            .top-banner p {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .top-banner h2 {
+                font-size: 1.6rem;
+            }
+            
+            .top-banner p {
+                font-size: 0.95rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header (SAMA PERSIS) -->
+    <header>
+        <div class="container header-container">
+            <a href="/" class="logo">
+                <img src="https://iili.io/F6BiQWu.png" alt="Lampung Agenda Logo">
+                <h1>Lampung Agenda</h1>
+            </a>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+            <nav id="mainNav">
+                <ul>
+                    <li><a href="/">Beranda</a></li>
+                    <li><a href="/#events">Event</a></li>
+                    <li><a href="/#calendar-section">Kalender</a></li>
+                    <li><a href="/#footer">Kontak</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- GANTI BANNER UTAMA MENJADI ERROR MESSAGE -->
+    <section class="top-banner">
+        <div class="container">
+            <h2><i class="fas fa-exclamation-triangle"></i> 404 - Halaman Tidak Ditemukan</h2>
+            <p>Maaf, halaman yang Anda cari tidak ada. Mungkin telah dihapus atau alamat URL salah.</p>
+            <a href="/" class="btn">Kembali ke Beranda <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </section>
+
+    <!-- HILANGKAN SLIDER DAN EVENT GRID (KARENA INI HALAMAN ERROR) -->
+
+    <!-- Footer (SAMA PERSIS) -->
+    <footer class="footer-top" id="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <div class="footer-logo">
+                        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi5594zjm6LNta6GO7LHWqW1fm9_7gpRF5j040xNcIvdOrXTxmdKJ9-Oop9DSi14Tf2hBFgtJcmtYqOA1D5z7E7PZzq23aXquco836fKRvg1kMYZ6vNvzUCXgBn5dThbXXMeoLpJHzxnjlDJkXSN0maVtKSV_qB-Wqz45hamtvwOSXMYI-s__8ixygT-5De/s989/1754489007629.png" alt="Lampung Agenda">
+                    </div>
+                    <p class="footer-about">
+                        Lampung Agenda adalah platform informasi resmi yang menyajikan berbagai acara, kegiatan, dan event terbaru di seluruh Provinsi Lampung.
+                    </p>
+                    <div class="social-links">
+                        <a href="https://www.instagram.com/lampungagenda.id" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3 class="footer-title">Menu</h3>
+                    <div class="footer-links">
+                        <a href="/"><i class="fas fa-chevron-right"></i> Beranda</a>
+                        <a href="/#events"><i class="fas fa-chevron-right"></i> Event</a>
+                        <a href="/#calendar-section"><i class="fas fa-chevron-right"></i> Kalender</a>
+                    </div>
+                </div>
+<div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="container">
+                <p class="copyright">
+                    © 2025 <a href="/">Lampung Agenda</a>. All rights reserved. 
+                    <br>Dikembangkan dengan <i class="fas fa-heart" style="color: #ff6b6b;"></i> untuk Provinsi Lampung
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Script (SAMA PERSIS) -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile Menu Toggle
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const mainNav = document.getElementById('mainNav');
+            
+            mobileMenuBtn.addEventListener('click', function() {
+                this.innerHTML = mainNav.classList.contains('active') ? '☰' : '✕';
+                mainNav.classList.toggle('active');
+                document.body.style.overflow = mainNav.classList.contains('active') ? 'hidden' : 'auto';
+            });
+            
+            // Close mobile menu when clicking a link
+            document.querySelectorAll('#mainNav a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mainNav.classList.remove('active');
+                    mobileMenuBtn.innerHTML = '☰';
+                    document.body.style.overflow = 'auto';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
