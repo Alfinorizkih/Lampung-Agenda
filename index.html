@@ -726,6 +726,35 @@
             font-style: italic;
         }
 
+        /* Favorites Section */
+        .favorites-section {
+            padding: 80px 0;
+            background-color: var(--off-white);
+        }
+
+        .no-favorites {
+            text-align: center;
+            padding: 50px 20px;
+            grid-column: 1 / -1;
+            color: var(--text-light);
+        }
+
+        .no-favorites i {
+            margin-bottom: 20px;
+            color: var(--accent);
+            font-size: 3rem;
+        }
+
+        .no-favorites h3 {
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .no-favorites p {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
         /* Footer */
         .footer-top {
             background: linear-gradient(135deg, var(--primary), var(--primary-light));
@@ -1059,6 +1088,7 @@
                     <li><a href="index.html">Beranda</a></li>
                     <li><a href="index.html#events">Event</a></li>
                     <li><a href="index.html#calendar-section">Kalender</a></li>
+                    <li><a href="index.html#favorites-section">Favorit</a></li>
                     <li><a href="index.html#footer">Kontak</a></li>
                 </ul>
             </nav>
@@ -1141,6 +1171,24 @@
         </div>
     </section>
 
+    <!-- Favorites Section -->
+    <section class="favorites-section" id="favorites-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Favorit Saya</h2>
+                <p>Event yang telah Anda simpan untuk referensi di masa depan</p>
+            </div>
+            
+            <div class="events-grid" id="favoritesGrid">
+
+                    <i class="far fa-bookmark"></i>                
+                    <h3>Belum ada event favorit</h3>
+                    <p>Simpan event dengan menekan tombol <strong>Simpan Acara</strong> di halaman detail event</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer class="footer-top" id="footer">
         <div class="container">
@@ -1153,7 +1201,7 @@
                         Lampung Agenda adalah platform informasi resmi yang menyajikan berbagai acara, kegiatan, dan event terbaru di seluruh Provinsi Lampung.
                     </p>
                     <div class="social-links">
-                        <a href="https://www.instagram.com/lampungagenda.id" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.instagram.com/lampungagenda" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
                 
@@ -1163,11 +1211,12 @@
                         <a href="index.html"><i class="fas fa-chevron-right"></i> Beranda</a>
                         <a href="index.html#events"><i class="fas fa-chevron-right"></i> Event</a>
                         <a href="index.html#calendar-section"><i class="fas fa-chevron-right"></i> Kalender</a>
+                        <a href="index.html#favorites-section"><i class="fas fa-chevron-right"></i> Favorit</a>
                         <a href="index.html#footer"><i class="fas fa-chevron-right"></i> Kontak</a>
                     </div>
                 </div>
-                <div></div>
-                        </div>
+                
+<div>    </div>
                     </div>
                 </div>
             </div>
@@ -1266,6 +1315,7 @@
             
             // Fetch Events from Google Sheet
             const eventsGrid = document.getElementById('eventsGrid');
+            const favoritesGrid = document.getElementById('favoritesGrid');
             const searchInput = document.getElementById('searchInput');
             const categoryFilter = document.getElementById('categoryFilter');
             const eventsList = document.getElementById('eventsList');
@@ -1329,6 +1379,7 @@
                     
                     displayEvents(allEvents);
                     initializeCalendar(allEvents);
+                    loadFavoriteEvents();
                 } catch (error) {
                     console.error('Error fetching events:', error);
                     eventsGrid.innerHTML = `
@@ -1338,6 +1389,83 @@
                         </div>
                     `;
                 }
+            }
+            
+            // Load favorite events from localStorage
+            function loadFavoriteEvents() {
+                const favoriteEvents = [];
+                const today = new Date();
+                today.setHours(0, 0, 0, 0);
+                
+                // Get all saved event IDs from localStorage
+                for (let i = 0; i < localStorage.length; i++) {
+                    const key = localStorage.key(i);
+                    if (key.startsWith('savedEvent_')) {
+                        const eventId = key.replace('savedEvent_', '');
+                        const event = allEvents.find(e => `id=${e.id}` === eventId);
+                        if (event) {
+                            // Check if event is not past
+                            const eventEndDate = new Date(event.endDate || event.startDate);
+                            eventEndDate.setHours(23, 59, 59, 999);
+                            
+                            if (eventEndDate >= today) {
+                                favoriteEvents.push(event);
+                            } else {
+                                // Remove past events from favorites
+                                localStorage.removeItem(key);
+                            }
+                        }
+                    }
+                }
+                
+                renderFavoriteEvents(favoriteEvents);
+            }
+            
+            // Render favorite events
+            function renderFavoriteEvents(events) {
+                const favoritesGrid = document.getElementById('favoritesGrid');
+                
+                if (events.length === 0) {
+                    favoritesGrid.innerHTML = `
+                        <div class="no-favorites">
+                            <i class="far fa-bookmark"></i>
+                            <h3>Belum ada event favorit</h3>
+                            <p>Simpan event dengan menekan tombol <strong>Simpan Acara</strong> di halaman detail event</p>
+                        </div>
+                    `;
+                    return;
+                }
+                
+                favoritesGrid.innerHTML = '';
+                
+                events.forEach(event => {
+                    const eventCard = document.createElement('div');
+                    eventCard.className = 'event-card';
+                    eventCard.innerHTML = `
+                        <a href="event.html?id=${event.id}" class="event-link-wrapper">
+                            <div class="event-image">
+                                <img src="${event.image}" alt="${event.title}" loading="lazy">
+                                <span class="event-category">${event.category}</span>
+                            </div>
+                            <div class="event-content">
+                                <h3 class="event-title">${event.title}</h3>
+                                <div class="event-date">
+                                    <i class="far fa-calendar-alt"></i>
+                                    ${formatDate(event.start)} ${event.end ? ' - ' + formatDate(event.end) : ''}
+                                </div>
+                                <div class="event-location">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    ${event.location}
+                                </div>
+                                <p class="event-description">${truncateText(event.description, 100)}</p>
+                                <p class="event-organizer">Diselenggarakan oleh: ${event.organizer}</p>
+                                <span class="event-link">Lihat Detail <i class="fas fa-arrow-right"></i></span>
+                            </div>
+                        </a>
+                    `;
+                    
+                    favoritesGrid.appendChild(eventCard);
+                });
             }
             
             // Helper function to create URL slug
@@ -1674,4 +1802,4 @@
         });
     </script>
 </body>
-</html>
+    </html>
